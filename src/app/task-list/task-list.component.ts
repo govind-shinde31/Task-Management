@@ -21,14 +21,13 @@ export class TaskListComponent {
     this.tasks = this.taskService.getTasks();
   }
 
-
   deleteTask(taskId: number): void {
     this.tasks = this.tasks.filter(t => t.id !== taskId);
     this.taskService.deleteTask(taskId);
   }
 
   markCompleted(taskId: number, event: any): void {
-        const status = event.target.checked;
+    const status = event.target.checked;
     this.taskService.completeTask(taskId, status);
   }
 }
