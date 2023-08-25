@@ -1,0 +1,24 @@
+<div class="container form-width mt-5 shadow p-3 mb-5 bg-light rounded">
+    <h2>Add New Task</h2>
+    <form (ngSubmit)="submitForm()">
+      <div class="form-group font-bold">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" [(ngModel)]="newTask.title" name="title" required>
+        <!-- <div
+      *ngIf="(taskForm.title.touched || disable) && (taskForm.title.error?.required)"
+      class="text-danger">
+      Title is required.
+    </div> -->
+      </div>
+      <div class="form-group font-bold">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" [(ngModel)]="newTask.description" name="description" rows="3" required></textarea>
+      </div>
+      <div class="form-group font-bold">
+        <label for="dueDate">Due Date</label>
+        <input type="date" class="form-control mb-3" id="dueDate" [(ngModel)]="newTask.dueDate" name="dueDate" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Add Task</button>
+    </form>
+  </div>
+  
