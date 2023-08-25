@@ -5,21 +5,35 @@ import { Task } from '../shared/task.model';
   providedIn: 'root'
 })
 export class TaskService {
+
   private tasks: Task[] = [];
   private localStorageKey = 'tasks';
 
   constructor() {
     // Load tasks from localStorage on service initialization
-    const savedTasks = localStorage.getItem('tasks');
+    const savedTasks = localStorage.getItem(this.localStorageKey);
     if (savedTasks) {
       this.tasks = JSON.parse(savedTasks);
     }
   }
 
+
+  getTaskById(id: string): Task {
+    const t = this.tasks.find(t => t.id === +id) ?? {
+      id: 0,
+      title: '',
+      description: '',
+      dueDate: new Date(),
+      completed: false,
+    };
+
+    return t;
+
+  }
+
   // grt all task from localstorage
   getTasks(): Task[] {
-    const storedTasks = localStorage.getItem(this.localStorageKey);
-    return storedTasks ? JSON.parse(storedTasks) : [];
+    return this.tasks;
   }
 
   saveTasks(tasks: Task[]): void {
@@ -28,31 +42,36 @@ export class TaskService {
 
   // add task into the local storage with id
   addTask(task: Task): void {
-    const tasks = this.getTasks();
     task.id = Date.now(); // Generate a unique id (timestamp-based)
-    tasks.push(task);
-    this.saveTasks(tasks);
+    this.tasks.push(task);
+    this.saveTasks(this.tasks);
   }
   // update the exiting task
   updateTask(updatedTask: Task): void {
-    const tasks = this.getTasks();
-
+    const task = this.tasks.find(task => task.id === updatedTask.id);
+    if (task) {
+      task.completed = updatedTask.completed;
+      task.title = updatedTask.title;
+      task.description = updatedTask.description;
+      task.dueDate = updatedTask.dueDate;
+      this.saveTasks(this.tasks);
+    }
   }
 
   // delet tasks from localstorage
-  deleteTask(taskId: any): void {
-    this.tasks.splice(taskId, 1);
+  deleteTask(taskId: number): void {
+    const index = this.tasks.findIndex(t => t.id === taskId);
+    this.tasks.splice(index, 1);
     this.saveTasks(this.tasks);
-    }
-  
+  }
 
-  completeTask(taskId: number): void {
-    const tasks = this.getTasks();
-    const task = tasks.find(task => task.id === taskId);
+  completeTask(taskId: number, status: boolean): void {
+    const task = this.tasks.find(task => task.id === taskId);
     if (task) {
-      task.completed = true;
-      this.saveTasks(tasks);
+      task.completed = status;
+      this.saveTasks(this.tasks);
     }
   }
+
 
 }

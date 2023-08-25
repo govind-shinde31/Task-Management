@@ -12,34 +12,33 @@ import { Task } from '../shared/task.model';
 })
 export class CreateTaskComponent {
   newTask: Task = {
-    id:0,
+    id: 0,
     title: '',
     description: '',
     dueDate: new Date(),
     completed: false,
   };
+
   taskForm?: FormGroup;
- 
+
 
   constructor(
     private fb: FormBuilder,
     private taskService: TaskService,
     private router: Router
-  ) {}
-  
+  ) { }
+
   ngOnInit(): void {
-    // this.taskForm = this.fb.group({
-    //   title: ['', Validators.required],
-    //   description: ['', Validators.required],
-    //   dueDate: [null, Validators.required],
-    //   completed: [false],
-    // });
+
   }
 
 
-  submitForm(){
-    console.log('Task:', this.newTask);
-    this.taskService.addTask(this.newTask)
+  submitForm() {
+
+    this.taskService.addTask(this.newTask);
+
+
+    this.router.navigate(['list']);
   }
 
 }

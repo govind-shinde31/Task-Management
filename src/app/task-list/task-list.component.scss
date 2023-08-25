@@ -1,3 +1,27 @@
-.completed-task {
-    background-color: #d7fdd7; /* Light green */
+:host {
+  display: block;
+  height: calc(100% - 56px);
+}
+
+.list-container {
+  ul {
+    list-style: none;
+    padding-left: 0px;
+
+    li {
+      padding: 10px;
+      border-bottom: 1px solid #f3f3f3;
+      //      border: 1px solid #f3f3f3;
+
+      &:hover {
+        
+
+        background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity))!important;
+      }
+    }
   }
+}
+
+.checkbox {
+  width: 50px;
+}

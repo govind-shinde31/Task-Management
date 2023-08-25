@@ -6,14 +6,14 @@ import { AppComponent } from './app.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { CreateTaskComponent } from './create-task/create-task.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DescriptionComponent } from './description/description.component';
+import { EditTaskComponent } from './edit-task/edit-task.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskListComponent,
     CreateTaskComponent,
-    DescriptionComponent
+    EditTaskComponent
   ],
   imports: [
     BrowserModule,

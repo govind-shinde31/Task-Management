@@ -2,7 +2,6 @@ import { Component, Output } from '@angular/core';
 import { Task } from '../shared/task.model';
 import { TaskService } from '../service/task.service';
 import { Router } from '@angular/router';
-import { DescriptionComponent } from '../description/description.component';
 
 @Component({
   selector: 'app-task-list',
@@ -11,37 +10,26 @@ import { DescriptionComponent } from '../description/description.component';
 })
 export class TaskListComponent {
   tasks: Task[] = [];
- selectedTask: Task | null = null;
 
-  constructor(private taskService: TaskService, private router: Router) {}
+  constructor(private taskService: TaskService, private router: Router) { }
 
   ngOnInit(): void {
-    this.getTask();
+    this.getTasks();
   }
-  getTask(){
+
+  getTasks() {
     this.tasks = this.taskService.getTasks();
   }
 
 
-
-  showDescription(task: Task): void {
-    this.selectedTask = task;
-    console.log(task);
+  deleteTask(taskId: number): void {
+    this.tasks = this.tasks.filter(t => t.id !== taskId);
+    this.taskService.deleteTask(taskId);
   }
 
-  edit(data:number){
-   let getDetails = data;
-    // this.router.navigate(['create-task', data]);
-     alert(getDetails)
+  markCompleted(taskId: number, event: any): void {
+        const status = event.target.checked;
+    this.taskService.completeTask(taskId, status);
   }
-  deleteTask(task: Task): void {
-    this.taskService.deleteTask(task)
-    console.log(task)
-    }
-
-    completeTask(taskId: number): void {
-      this.taskService.completeTask(taskId);
-      this.getTask();
-    }
-  }
+}
 
