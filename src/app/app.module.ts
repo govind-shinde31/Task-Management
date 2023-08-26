@@ -7,6 +7,7 @@ import { TaskListComponent } from './task-list/task-list.component';
 import { CreateTaskComponent } from './create-task/create-task.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditTaskComponent } from './edit-task/edit-task.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { EditTaskComponent } from './edit-task/edit-task.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

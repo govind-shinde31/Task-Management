@@ -2,6 +2,11 @@ import { Component, Output } from '@angular/core';
 import { Task } from '../shared/task.model';
 import { TaskService } from '../service/task.service';
 import { Router } from '@angular/router';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faEdit} from '@fortawesome/free-solid-svg-icons';
+
+
 
 @Component({
   selector: 'app-task-list',
@@ -10,6 +15,9 @@ import { Router } from '@angular/router';
 })
 export class TaskListComponent {
   tasks: Task[] = [];
+  faCoffee = faCoffee;
+  faTrash = faTrash;
+  faEdit = faEdit;
 
   constructor(private taskService: TaskService, private router: Router) { }
 

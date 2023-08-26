@@ -11,8 +11,8 @@
                   <div class="checkbox"><input class="checkbox" type="checkbox" [checked]="task.completed" (change)="markCompleted(task.id, $event)"> </div>
                   <div>{{task.title}}</div>
                   <div class="ml-auto">
-                    <button [routerLink]="['/edit-task', task.id]" class="mr-1">Edit</button>
-                    <button (click)="deleteTask(task.id)">Delete</button>
+                    <button [routerLink]="['/edit-task', task.id]" class="mr-1 b-none text-primary"><fa-icon [icon]="faEdit"></fa-icon></button>
+                    <button (click)="deleteTask(task.id)" class="b-none text-danger"><fa-icon [icon]="faTrash"></fa-icon></button>
                   </div>
                 </div>
               </li>
