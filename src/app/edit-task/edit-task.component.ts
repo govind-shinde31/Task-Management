@@ -26,5 +26,10 @@ export class EditTaskComponent implements OnInit {
   submitForm() {
     this.taskService.updateTask(this.task);
     this.router.navigate(['list']);
+    this.taskEdited()
+  }
+
+  taskEdited():void{
+    this.taskService.showSuccess("Task Edited", "Edit")
   }
 }

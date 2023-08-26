@@ -4,14 +4,17 @@
             <div class="card px-3">
                 <div class="card-body">
                     <h4 class="card-title">Edit Task</h4>
-
+<button>back</button>
                     <div class="list-container">
-                        <form (ngSubmit)="submitForm()">
+                        <form #editForm="ngForm" (ngSubmit)="submitForm()">
                             <div class="form-group font-bold mb-4">
                                 <label for="title">Title</label>
-                                <input type="text" class="form-control" id="title" [(ngModel)]="task.title"
-                                    name="title" required>
-
+                                <input type="text" class="form-control" id="title" [(ngModel)]="task.title" name="title"
+                                    #title="ngModel" required />
+                                <span class="text-danger"
+                                    *ngIf="(title.touched || editForm.submitted) && title.errors?.['required']">
+                                    Title is required
+                                </span>
                             </div>
                             <div class="form-group font-bold mb-4">
                                 <label for="description">Description</label>
@@ -21,9 +24,11 @@
                             <div class="form-group font-bold mb-4">
                                 <label for="dueDate">Due Date</label>
                                 <input type="date" class="form-control mb-3" id="dueDate" [(ngModel)]="task.dueDate"
-                                    name="dueDate" required>
+                                    name="dueDate" required />
                             </div>
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="submit" class="btn btn-primary" [disabled]="!editForm.form.valid">
+                                Save
+                            </button>
                         </form>
                     </div>
                 </div>

@@ -1,9 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TaskService } from '../service/task.service';
 import { Router } from '@angular/router';
 import { Task } from '../shared/task.model';
-// import { v4 as uuidv4 } from 'uuid';
+
 
 @Component({
   selector: 'app-create-task',
@@ -19,11 +18,9 @@ export class CreateTaskComponent {
     completed: false,
   };
 
-  taskForm?: FormGroup;
 
 
   constructor(
-    private fb: FormBuilder,
     private taskService: TaskService,
     private router: Router
   ) { }
@@ -37,8 +34,12 @@ export class CreateTaskComponent {
 
     this.taskService.addTask(this.newTask);
 
-
+    this.taskCreated();
     this.router.navigate(['list']);
+  }
+
+  taskCreated(): void {
+    this.taskService.showSuccess("Task Created", "Create")
   }
 
 }

@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Task } from '../shared/task.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
-
+  detail:any
   private tasks: Task[] = [];
   private localStorageKey = 'tasks';
 
-  constructor() {
+  constructor(private toastr: ToastrService) {
     // Load tasks from localStorage on service initialization
     const savedTasks = localStorage.getItem(this.localStorageKey);
     if (savedTasks) {
@@ -73,5 +74,7 @@ export class TaskService {
     }
   }
 
-
+  showSuccess(message: any, title: any) {
+    this.toastr.success(message, title)
+  }
 }
