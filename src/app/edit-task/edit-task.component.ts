@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from '../service/task.service';
 import { Task } from '../shared/task.model';
+import {faCalendar} from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-edit-task',
@@ -9,6 +10,7 @@ import { Task } from '../shared/task.model';
   styleUrls: ['./edit-task.component.scss']
 })
 export class EditTaskComponent implements OnInit {
+  faCalender = faCalendar;
   id!: string
   task!: Task;
 

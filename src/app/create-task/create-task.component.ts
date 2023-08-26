@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { TaskService } from '../service/task.service';
 import { Router } from '@angular/router';
 import { Task } from '../shared/task.model';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import {faCalendar} from '@fortawesome/free-solid-svg-icons'
 
 
 @Component({
@@ -10,6 +12,8 @@ import { Task } from '../shared/task.model';
   styleUrls: ['./create-task.component.scss']
 })
 export class CreateTaskComponent {
+  faCalender = faCalendar;
+  dueDate?: NgbDateStruct;
   newTask: Task = {
     id: 0,
     title: '',

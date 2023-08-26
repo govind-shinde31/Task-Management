@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-center pt-5">
     <div class="row container d-flex justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-12 w-50">
             <div class="card px-3">
                 <div class="card-body">
                     <div class="card-title d-flex flex-row justify-content-between">
@@ -9,7 +9,7 @@
                     </div>
                     <div class="list-container">
                         <form #editForm="ngForm" (ngSubmit)="submitForm()">
-                            <div class="form-group font-bold mb-4">
+                            <div class="form-group fw-bold mb-4">
                                 <label for="title">Title</label>
                                 <input type="text" class="form-control" id="title" [(ngModel)]="task.title" name="title"
                                     #title="ngModel" required />
@@ -18,16 +18,21 @@
                                     Title is required
                                 </span>
                             </div>
-                            <div class="form-group font-bold mb-4">
+                            <div class="form-group fw-bold mb-4">
                                 <label for="description">Description</label>
                                 <textarea class="form-control" id="description" [(ngModel)]="task.description"
                                     name="description" rows="3"></textarea>
                             </div>
-                            <div class="form-group font-bold mb-4">
-                                <label for="dueDate">Due Date </label>
-                                <input type="date" class="form-control mb-3" id="dueDate" [(ngModel)]="task.dueDate"
-                                    name="dueDate" required />
-                            </div>
+                            <div class="col-12 fw-bold mb-4">
+                                <label for="dueDate">Due Date</label>
+                                <div class="input-group">
+                                  <input class="form-control mb-3" placeholder="yyyy-mm-dd" [(ngModel)]="task.dueDate" ngbDatepicker #d="ngbDatepicker" #dueDate="ngModel" name="dueDate" required>
+                                  <button class="btn btn-outline-secondary pm-0" (click)="d.toggle()" type="button"><fa-icon [icon]="faCalender"></fa-icon></button></div>
+                                <span class="text-danger opacity"
+                                  *ngIf="(dueDate.touched ||editForm.submitted) && dueDate.errors?.['required']">
+                                  Due Date is required
+                                </span>
+                              </div>
                             <button type="submit" class="btn btn-primary" [disabled]="!editForm.form.valid">
                                 Save
                             </button>
