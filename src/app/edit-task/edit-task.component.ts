@@ -25,11 +25,14 @@ export class EditTaskComponent implements OnInit {
 
   submitForm() {
     this.taskService.updateTask(this.task);
-    this.router.navigate(['list']);
-    this.taskEdited()
+
+    this.taskService.showSuccess("Task Saved", "Edit")
+
+    setTimeout(() => {
+      this.router.navigate(['list']);
+
+    }, 1000);
+
   }
 
-  taskEdited():void{
-    this.taskService.showSuccess("Task Edited", "Edit")
-  }
 }

@@ -34,12 +34,12 @@ export class CreateTaskComponent {
 
     this.taskService.addTask(this.newTask);
 
-    this.taskCreated();
-    this.router.navigate(['list']);
+    this.taskService.showSuccess("Task Created", "Create")
+    setTimeout(() => {
+      this.router.navigate(['list']);
+      
+    }, 1000);
   }
 
-  taskCreated(): void {
-    this.taskService.showSuccess("Task Created", "Create")
-  }
 
 }
