@@ -13,7 +13,7 @@ const routes: Routes = [
     path: 'edit-task/:id', component: EditTaskComponent
   },
   {
-    path: 'detail-task/id', component: TaskDetailComponent
+    path: 'detail-task/:id', component: TaskDetailComponent
   },
   {
     path: '**', component: TaskListComponent

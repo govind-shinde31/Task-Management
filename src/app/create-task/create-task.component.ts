@@ -14,7 +14,7 @@ export class CreateTaskComponent {
     id: 0,
     title: '',
     description: '',
-    dueDate: new Date(),
+    dueDate: undefined,
     completed: false,
   };
 
