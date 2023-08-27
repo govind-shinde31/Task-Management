@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TaskDetailComponent } from './task-detail.component';
+import { RouterModule } from '@angular/router';
+import { ToastrModule } from 'ngx-toastr';
 
 describe('TaskDetailComponent', () => {
   let component: TaskDetailComponent;
@@ -8,7 +10,9 @@ describe('TaskDetailComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TaskDetailComponent]
+      declarations: [TaskDetailComponent],
+      imports: [ToastrModule.forRoot(),RouterModule.forRoot([])],
+      
     });
     fixture = TestBed.createComponent(TaskDetailComponent);
     component = fixture.componentInstance;
