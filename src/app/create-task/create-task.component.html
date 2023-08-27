@@ -8,37 +8,34 @@
             <button [routerLink]="['/list']" class="btn btn-outline-secondary">Back</button>
           </div>
           <div class="list-container">
-            <form #taskForm="ngForm" (ngSubmit)="submitForm()">
+            <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
               <div class="form-group fw-bold mb-4">
                 <label for="title">Title</label>
-                <input type="text" class="form-control" id="title" [(ngModel)]="newTask.title" name="title" required
-                  #title="ngModel">
-                <span class="text-danger" *ngIf="(title.touched || taskForm.submitted) && title.errors?.['required']">
-                  Title is required
-                </span>
+                <input id="title" class="form-control" type="text" formControlName="title">
+                <div
+                  *ngIf="taskForm.controls['title'].invalid && (taskForm.controls['title'].dirty || taskForm.controls['title'].touched)"
+                  class="text-danger opacity">
+
+                  Please enter title
+                </div>
+
               </div>
               <div class="form-group fw-bold mb-4">
                 <label for="description">Description</label>
-                <textarea class="form-control" id="description" [(ngModel)]="newTask.description" name="description"
-                  rows="3"></textarea>
+                <textarea class="form-control" id="description" formControlName="description" rows="3"></textarea>
               </div>
               <div class="col-12 fw-bold mb-4">
                 <label for="dueDate">Due Date</label>
-                
-              
 
-                  <input type="date"  #dueDate="ngModel"  class="form-control mb-3" id="dueDate" [(ngModel)]="newTask.dueDate" name="dueDate"
-                  required>
+                <input id="dueDate" type="date" class="form-control" formControlName="dueDate">
+                <div
+                  *ngIf="taskForm.controls['dueDate'].invalid && (taskForm.controls['dueDate'].dirty || taskForm.controls['dueDate'].touched)"
+                  class="text-danger opacity">
 
-                 
-               
-
-                <span class="text-danger opacity"
-                  *ngIf="(dueDate.touched || taskForm.submitted) && dueDate.errors?.['required']">
-                  Due Date is required
-                </span>
+                  Please select Due Date
+                </div>
               </div>
-              <button type="submit" class="btn btn-primary my-2" [disabled]="!taskForm.form.valid">Save</button>
+              <button type="submit" class="btn btn-primary my-2" [disabled]="!taskForm.valid">Save</button>
             </form>
           </div>
         </div>
