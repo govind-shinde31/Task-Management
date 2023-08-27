@@ -25,13 +25,13 @@
               <div class="col-12 fw-bold mb-4">
                 <label for="dueDate">Due Date</label>
                 
-                <div class="input-group">
-                  <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="newTask.dueDate" ngbDatepicker
-                    #d="ngbDatepicker" required #dueDate="ngModel" readonly
-                    />
-                  <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"><fa-icon
-                      [icon]="faCalender"></fa-icon></button>
-                </div>
+              
+
+                  <input type="date"  #dueDate="ngModel"  class="form-control mb-3" id="dueDate" [(ngModel)]="newTask.dueDate" name="dueDate"
+                  required>
+
+                 
+               
 
                 <span class="text-danger opacity"
                   *ngIf="(dueDate.touched || taskForm.submitted) && dueDate.errors?.['required']">
