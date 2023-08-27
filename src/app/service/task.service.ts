@@ -42,7 +42,7 @@ export class TaskService {
 
   // add task into the local storage with id
   addTask(task: Task): void {
-    task.id = Date.now(); // Generate a unique id (timestamp-based)
+   
     this.tasks.push(task);
     this.saveTasks(this.tasks);
   }

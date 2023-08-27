@@ -36,6 +36,7 @@ export class CreateTaskComponent {
 
   submitForm() {
 
+    this.newTask.id = Date.now(); // Generate a unique id (timestamp-based)
     this.taskService.addTask(this.newTask);
 
     this.taskService.showSuccess("Task Created", "Task Management")
