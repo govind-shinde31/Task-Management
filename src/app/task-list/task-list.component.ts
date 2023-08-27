@@ -32,6 +32,7 @@ export class TaskListComponent {
   deleteTask(taskId: number): void {
     this.tasks = this.tasks.filter(t => t.id !== taskId);
     this.taskService.deleteTask(taskId);
+    this.taskService.showSuccess("Deleted Succesfully", "Task Management")
   }
 
   markCompleted(taskId: number, event: any): void {

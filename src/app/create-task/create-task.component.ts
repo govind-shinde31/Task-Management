@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 import { TaskService } from '../service/task.service';
 import { Router } from '@angular/router';
 import { Task } from '../shared/task.model';
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import {faCalendar} from '@fortawesome/free-solid-svg-icons'
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -13,7 +13,7 @@ import {faCalendar} from '@fortawesome/free-solid-svg-icons'
 })
 export class CreateTaskComponent {
   faCalender = faCalendar;
-  dueDate?: NgbDateStruct;
+  dueDate?: undefined;
   newTask: Task = {
     id: 0,
     title: '',
@@ -38,7 +38,7 @@ export class CreateTaskComponent {
 
     this.taskService.addTask(this.newTask);
 
-    this.taskService.showSuccess("Task Created", "Create")
+    this.taskService.showSuccess("Task Created", "Task Management")
     setTimeout(() => {
       this.router.navigate(['list']);
       

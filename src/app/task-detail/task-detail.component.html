@@ -8,16 +8,22 @@
                         <button [routerLink]="['/list']" class="btn btn-outline-secondary">Back</button>
                     </div>
                     <div class="list-container">
-                        <div class="form-group font-bold mb-4">
-                            <label for="title">Title</label><br/>
-                            {{task.title}}
+                        <div class="form-group font-bold mb-4 d-flex">
+                            <div>
+                                <label for="title">Title</label><br />
+                                {{task.title}}
+                            </div>
+                            <div class="ml-auto">
+                                <label for="title">Status</label><br />
+                                {{task.completed ? 'Completed' : 'Pending'}}
+                            </div>
                         </div>
                         <div class="form-group font-bold mb-4">
-                            <label for="description">Description</label><br/>
+                            <label for="description">Description</label><br />
                             {{task.description}}
                         </div>
                         <div class="form-group font-bold mb-4">
-                            <label for="dueDate">Due Date </label> <br/>
+                            <label for="dueDate">Due Date </label> <br />
                             {{task.dueDate}}
                         </div>
                     </div>

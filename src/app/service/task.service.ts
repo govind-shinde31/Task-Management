@@ -6,7 +6,6 @@ import { ToastrService } from 'ngx-toastr';
   providedIn: 'root'
 })
 export class TaskService {
-  detail:any
   private tasks: Task[] = [];
   private localStorageKey = 'tasks';
 
@@ -32,7 +31,7 @@ export class TaskService {
 
   }
 
-  // grt all task from localstorage
+  // get all task from localstorage
   getTasks(): Task[] {
     return this.tasks;
   }
@@ -47,6 +46,7 @@ export class TaskService {
     this.tasks.push(task);
     this.saveTasks(this.tasks);
   }
+  
   // update the exiting task
   updateTask(updatedTask: Task): void {
     const task = this.tasks.find(task => task.id === updatedTask.id);

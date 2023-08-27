@@ -26,14 +26,18 @@
                             <div class="col-12 fw-bold mb-4">
                                 <label for="dueDate">Due Date</label>
                                 <div class="input-group">
-                                  <input class="form-control mb-3" placeholder="yyyy-mm-dd" [(ngModel)]="task.dueDate" ngbDatepicker #d="ngbDatepicker" #dueDate="ngModel" name="dueDate" required>
-                                  <button class="btn btn-outline-secondary pm-0" (click)="d.toggle()" type="button"><fa-icon [icon]="faCalender"></fa-icon></button></div>
-                                <span class="text-danger opacity"
-                                  *ngIf="(dueDate.touched ||editForm.submitted) && dueDate.errors?.['required']">
-                                  Due Date is required
-                                </span>
+                                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="task.dueDate" ngbDatepicker
+                                      #d="ngbDatepicker" required #dueDate="ngModel" readonly/>
+                                    <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"><fa-icon
+                                        [icon]="faCalender"></fa-icon></button>
+                                  </div>
+                  
+                                  <span class="text-danger opacity"
+                                    *ngIf="(dueDate.touched || editForm.submitted) && dueDate.errors?.['required']">
+                                    Due Date is required
+                                  </span>
                               </div>
-                            <button type="submit" class="btn btn-primary" [disabled]="!editForm.form.valid">
+                            <button type="submit" class="btn btn-primary my-2" [disabled]="!editForm.form.valid">
                                 Save
                             </button>
                         </form>
