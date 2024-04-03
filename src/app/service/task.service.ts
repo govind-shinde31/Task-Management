@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Task } from '../shared/task.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
-
   private tasks: Task[] = [];
   private localStorageKey = 'tasks';
 
-  constructor() {
+  constructor(private toastr: ToastrService) {
     // Load tasks from localStorage on service initialization
     const savedTasks = localStorage.getItem(this.localStorageKey);
     if (savedTasks) {
@@ -31,7 +31,7 @@ export class TaskService {
 
   }
 
-  // grt all task from localstorage
+  // get all task from localstorage
   getTasks(): Task[] {
     return this.tasks;
   }
@@ -42,10 +42,11 @@ export class TaskService {
 
   // add task into the local storage with id
   addTask(task: Task): void {
-    task.id = Date.now(); // Generate a unique id (timestamp-based)
+   
     this.tasks.push(task);
     this.saveTasks(this.tasks);
   }
+  
   // update the exiting task
   updateTask(updatedTask: Task): void {
     const task = this.tasks.find(task => task.id === updatedTask.id);
@@ -73,5 +74,7 @@ export class TaskService {
     }
   }
 
-
+  showSuccess(message: any, title: any) {
+    this.toastr.success(message, title)
+  }
 }

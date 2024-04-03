@@ -1,36 +1,44 @@
 <div class="d-flex justify-content-center pt-5">
   <div class="row container d-flex justify-content-center">
-    <div class="col-md-12">
+    <div class="col-md-12 w-50">
       <div class="card px-3">
         <div class="card-body">
-          <h4 class="card-title">Create new todo</h4>
+          <div class="card-title d-flex flex-row justify-content-between">
+            <h4 class="">Add Task</h4>
+            <button [routerLink]="['/list']" class="btn btn-outline-secondary">Back</button>
+          </div>
+          <div class="list-container">
+            <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+              <div class="form-group fw-bold mb-4">
+                <label for="title">Title</label>
+                <input id="title" class="form-control" type="text" formControlName="title">
+                <div
+                  *ngIf="taskForm.controls['title'].invalid && (taskForm.controls['title'].dirty || taskForm.controls['title'].touched)"
+                  class="text-danger opacity">
 
-          <div class="list-container d-flex flex-row">
-            <div class="w-50">
-              <form (ngSubmit)="submitForm()">
-                <div class="form-group font-bold mb-4">
-                  <label for="title">Title</label>
-                  <input type="text" class="form-control" id="title" [(ngModel)]="newTask.title" name="title" required>
+                  Please enter title
+                </div>
 
-                </div>
-                <div class="form-group font-bold mb-4">
-                  <label for="description">Description</label>
-                  <textarea class="form-control" id="description" [(ngModel)]="newTask.description" name="description"
-                    rows="3" required></textarea>
-                </div>
-                <div class="form-group font-bold mb-4">
-                  <label for="dueDate">Due Date</label>
-                  <input type="date" class="form-control mb-3" id="dueDate" [(ngModel)]="newTask.dueDate" name="dueDate"
-                    required>
-                </div>
-                <button type="submit" class="btn btn-primary">Save</button>
-              </form>
-            </div>
-            <div class="w-50 p-4">Some info</div>
+              </div>
+              <div class="form-group fw-bold mb-4">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" formControlName="description" rows="3"></textarea>
+              </div>
+              <div class="col-12 fw-bold mb-4">
+                <label for="dueDate">Due Date</label>
 
+                <input id="dueDate" type="date" class="form-control" formControlName="dueDate">
+                <div
+                  *ngIf="taskForm.controls['dueDate'].invalid && (taskForm.controls['dueDate'].dirty || taskForm.controls['dueDate'].touched)"
+                  class="text-danger opacity">
+
+                  Please select Due Date
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary my-2" [disabled]="!taskForm.valid">Save</button>
+            </form>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>

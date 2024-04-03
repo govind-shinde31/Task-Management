@@ -1,9 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TaskService } from '../service/task.service';
 import { Router } from '@angular/router';
 import { Task } from '../shared/task.model';
-// import { v4 as uuidv4 } from 'uuid';
+import { faCalendar } from '@fortawesome/free-solid-svg-icons'
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-create-task',
@@ -11,19 +13,19 @@ import { Task } from '../shared/task.model';
   styleUrls: ['./create-task.component.scss']
 })
 export class CreateTaskComponent {
-  newTask: Task = {
-    id: 0,
-    title: '',
-    description: '',
-    dueDate: new Date(),
-    completed: false,
-  };
+  faCalender = faCalendar;
 
-  taskForm?: FormGroup;
+
+  taskForm = new FormGroup({
+    id: new FormControl(Date.now()),
+    title: new FormControl('', Validators.required),
+    description: new FormControl(''),
+    dueDate: new FormControl('', Validators.required),
+  });
+
 
 
   constructor(
-    private fb: FormBuilder,
     private taskService: TaskService,
     private router: Router
   ) { }
@@ -32,13 +34,17 @@ export class CreateTaskComponent {
 
   }
 
+  onSubmit(): void {
 
-  submitForm() {
+    this.taskService.addTask(this.taskForm.value as Task);
 
-    this.taskService.addTask(this.newTask);
+    this.taskService.showSuccess("Task Created", "Task Management")
+    setTimeout(() => {
+      this.router.navigate(['list']);
 
+    }, 1000);
 
-    this.router.navigate(['list']);
   }
+
 
 }

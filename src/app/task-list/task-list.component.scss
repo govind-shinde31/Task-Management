@@ -33,7 +33,15 @@
   margin-right: 1rem;
 }
 
-
 .completed {
   background: #e2eecf !important;
+}
+
+.b-none {
+  border: none;
+  background: transparent;
+}
+
+.title {
+  cursor: pointer;
 }

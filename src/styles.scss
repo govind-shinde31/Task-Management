@@ -1,11 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
-*{
-    font-family: "Times New Roman", Times, serif;
+* {
+    font-family: "Roboto",sans-serif;
 }
 
-
 html,
-body{
+body {
     height: 100%;
     display: block;
 }
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
