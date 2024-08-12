@@ -77,4 +77,15 @@ export class TaskService {
   showSuccess(message: any, title: any) {
     this.toastr.success(message, title)
   }
+
+  searchTasksByTitle(title: string): any[] {
+    const tasksString = localStorage.getItem('tasks');
+    if (tasksString) {
+      const tasks = JSON.parse(tasksString);
+      return tasks.filter((task: { title: string }) => task.title.toLowerCase().includes(title.toLowerCase()));
+    } else {
+      return [];
+    }
+  }
+
 }

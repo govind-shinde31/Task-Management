@@ -13,6 +13,11 @@ import { ToastrModule } from 'ngx-toastr';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { MainnavbarComponent } from './mainnavbar/mainnavbar.component';
+import { StartingPageComponent } from './starting-page/starting-page.component';
+import { SearchComponent } from './search/search.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +26,12 @@ import { LoginComponent } from './login/login.component';
     CreateTaskComponent,
     EditTaskComponent,
     TaskDetailComponent,
-    LoginComponent
+    LoginComponent,
+    NavbarComponent,
+    MainnavbarComponent,
+    StartingPageComponent,
+    SearchComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

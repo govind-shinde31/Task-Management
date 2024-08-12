@@ -40,7 +40,7 @@ export class CreateTaskComponent {
 
     this.taskService.showSuccess("Task Created", "Task Management")
     setTimeout(() => {
-      this.router.navigate(['list']);
+      this.router.navigate(['task-list']);
 
     }, 1000);
 

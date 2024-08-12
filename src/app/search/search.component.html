@@ -1,0 +1,19 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col">
+      <app-mainnavbar></app-mainnavbar>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col">
+      <h3 class="mt-3">Search Results for "{{ searchText }}"</h3>
+      <ul class="list-group mt-3">
+        <li class="list-group-item" *ngFor="let task of tasks">
+          {{ task.title }} - {{ task.completed ? 'Completed' : 'Pending' }}
+        </li>
+        <li class="list-group-item" *ngIf="tasks.length === 0">No tasks found</li>
+      </ul>
+    </div>
+  </div>
+</div>
