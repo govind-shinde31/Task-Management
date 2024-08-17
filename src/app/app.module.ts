@@ -18,6 +18,8 @@ import { MainnavbarComponent } from './mainnavbar/mainnavbar.component';
 import { StartingPageComponent } from './starting-page/starting-page.component';
 import { SearchComponent } from './search/search.component';
 import { RegisterComponent } from './register/register.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +33,7 @@ import { RegisterComponent } from './register/register.component';
     MainnavbarComponent,
     StartingPageComponent,
     SearchComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +41,7 @@ import { RegisterComponent } from './register/register.component';
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     NgbModule,

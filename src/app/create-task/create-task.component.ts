@@ -5,6 +5,7 @@ import { Task } from '../shared/task.model';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons'
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { BackendService } from '../shared/backend.service';
 
 
 @Component({
@@ -14,6 +15,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class CreateTaskComponent {
   faCalender = faCalendar;
+
+  // The commented code is used for local storage
 
 
   taskForm = new FormGroup({
@@ -26,25 +29,36 @@ export class CreateTaskComponent {
 
 
   constructor(
-    private taskService: TaskService,
-    private router: Router
+    private localService: TaskService,
+    private router: Router,
+    private taskService: BackendService
   ) { }
 
   ngOnInit(): void {
 
   }
 
+  // onSubmit(): void {
+
+  //   this.localService.addTask(this.taskForm.value as Task);
+
+  //   this.localService.showSuccess("Task Created", "Task Management")
+  //   setTimeout(() => {
+  //     this.router.navigate(['task-list']);
+  //   }, 1000);
+  // }
+
+
   onSubmit(): void {
-
-    this.taskService.addTask(this.taskForm.value as Task);
-
+    this.taskService.createTask(this.taskForm.value as Task).subscribe((response) => {
+      console.log('Task created successfully!');
+    }, (error) => {
+      console.error('Error creating task:', error);
+    });
     this.taskService.showSuccess("Task Created", "Task Management")
     setTimeout(() => {
       this.router.navigate(['task-list']);
 
     }, 1000);
-
   }
-
-
 }
