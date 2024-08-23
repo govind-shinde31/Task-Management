@@ -24,7 +24,7 @@
                         </div>
                         <div class="form-group font-bold mb-4">
                             <label for="dueDate">Due Date </label> <br />
-                            {{task.dueDate}}
+                            {{task.dueDate | date: 'MM/dd/yyyy hh:mm a'}}
                         </div>
                     </div>
                 </div>

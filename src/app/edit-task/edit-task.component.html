@@ -1,46 +1,50 @@
 <div class="d-flex justify-content-center pt-5">
-    <div class="row container d-flex justify-content-center">
-        <div class="col-md-12 w-50">
-            <div class="card px-3">
-                <div class="card-body">
-                    <div class="card-title d-flex flex-row justify-content-between">
-                        <h4 class="">Edit Task</h4>
-                        <button [routerLink]="['/task-list']" class="btn btn-outline-secondary">Back</button>
-                    </div>
-                    <div class="list-container">
-                        <form #editForm="ngForm" (ngSubmit)="submitForm()">
-                            <div class="form-group fw-bold mb-4">
-                                <label for="title">Title</label>
-                                <input type="text" class="form-control" id="title" [(ngModel)]="task.title" name="title"
-                                    #title="ngModel" required />
-                                <span class="text-danger"
-                                    *ngIf="(title.touched || editForm.submitted) && title.errors?.['required']">
-                                    Title is required
-                                </span>
-                            </div>
-                            <div class="form-group fw-bold mb-4">
-                                <label for="description">Description</label>
-                                <textarea class="form-control" id="description" [(ngModel)]="task.description"
-                                    name="description" rows="3"></textarea>
-                            </div>
-                            <div class="col-12 fw-bold mb-4">
-                                <label for="dueDate">Due Date</label>
-                                <input type="date"  #dueDate="ngModel"  class="form-control mb-3" id="dueDate" [(ngModel)]="task.dueDate" name="dueDate"
-                                required>
-              
-                  
-                                  <span class="text-danger opacity"
-                                    *ngIf="(dueDate.touched || editForm.submitted) && dueDate.errors?.['required']">
-                                    Due Date is required
-                                  </span>
-                              </div>
-                            <button type="submit" class="btn btn-primary my-2" [disabled]="!editForm.form.valid">
-                                Save
-                            </button>
-                        </form>
-                    </div>
+  <div class="row container d-flex justify-content-center">
+    <div class="col-md-12 w-50">
+      <div class="card px-3">
+        <div class="card-body">
+          <div class="card-title d-flex flex-row justify-content-between">
+            <h4 class="">Edit Task</h4>
+            <button [routerLink]="['/task-list']" class="btn btn-outline-secondary">Back</button>
+          </div>
+          <div class="list-container">
+            <form #editForm="ngForm" (ngSubmit)="submitForm()">
+              <div class="form-group fw-bold mb-4">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" [(ngModel)]="task.title" name="title"
+                  #title="ngModel" required />
+                  @if ((title.touched || editForm.submitted) && title.errors?.['required']) {
+                    <span class="text-danger"
+                      >
+                      Title is required
+                    </span>
+                  }
                 </div>
+                <div class="form-group fw-bold mb-4">
+                  <label for="description">Description</label>
+                  <textarea class="form-control" id="description" [(ngModel)]="task.description"
+                  name="description" rows="3"></textarea>
+                </div>
+                <div class="col-12 fw-bold mb-4">
+                  <label for="dueDate">Due Date</label>
+                  <input type="date"  #dueDate="ngModel"  class="form-control mb-3" id="dueDate" [ngModel]="task.dueDate | date: 'yyyy-MM-dd'" name="dueDate"
+                    required>
+
+
+                    @if ((dueDate.touched || editForm.submitted) && dueDate.errors?.['required']) {
+                      <span class="text-danger opacity"
+                        >
+                        Due Date is required
+                      </span>
+                    }
+                  </div>
+                  <button type="submit" class="btn btn-primary my-2" [disabled]="!editForm.form.valid">
+                    Save
+                  </button>
+                </form>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>

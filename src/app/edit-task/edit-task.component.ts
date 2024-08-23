@@ -13,9 +13,8 @@ import { BackendService } from '../shared/backend.service';
 export class EditTaskComponent implements OnInit {
   faCalender = faCalendar;
   id!: string
-  task: Partial<Task> = {};
-  tasks!: Task;
-
+  task: any;
+  
   constructor(
     private route: ActivatedRoute,
     private localService: TaskService,
@@ -46,7 +45,7 @@ export class EditTaskComponent implements OnInit {
   }
 
   submitForm() {
-    this.taskService.updateTask(this.tasks).subscribe((res) =>{
+    this.taskService.updateTask(this.task).subscribe((res) =>{
       console.log(res);
     })
 

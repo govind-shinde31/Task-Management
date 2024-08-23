@@ -18,35 +18,28 @@ import { MainnavbarComponent } from './mainnavbar/mainnavbar.component';
 import { StartingPageComponent } from './starting-page/starting-page.component';
 import { SearchComponent } from './search/search.component';
 import { RegisterComponent } from './register/register.component';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    TaskListComponent,
-    CreateTaskComponent,
-    EditTaskComponent,
-    TaskDetailComponent,
-    LoginComponent,
-    NavbarComponent,
-    MainnavbarComponent,
-    StartingPageComponent,
-    SearchComponent,
-    RegisterComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    FontAwesomeModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    ToastrModule.forRoot(),
-    NgbModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        TaskListComponent,
+        CreateTaskComponent,
+        EditTaskComponent,
+        TaskDetailComponent,
+        LoginComponent,
+        NavbarComponent,
+        MainnavbarComponent,
+        StartingPageComponent,
+        SearchComponent,
+        RegisterComponent,
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        FontAwesomeModule,
+        BrowserAnimationsModule,
+        ToastrModule.forRoot(),
+        NgbModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }

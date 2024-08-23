@@ -23,7 +23,7 @@ export class CreateTaskComponent {
     id: new FormControl(Date.now()),
     title: new FormControl('', Validators.required),
     description: new FormControl(''),
-    dueDate: new FormControl('', Validators.required),
+    dueDate: new FormControl(new Date(), Validators.required),
   });
 
 
@@ -60,5 +60,9 @@ export class CreateTaskComponent {
       this.router.navigate(['task-list']);
 
     }, 1000);
+  }
+
+  get dueDate() {
+    return this.taskForm.get('dueDate')?.value;
   }
 }
